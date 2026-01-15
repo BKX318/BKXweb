@@ -26,10 +26,9 @@ const QUESTIONS = [
     type: "text",
     title: "Lokacija prostora",
     placeholder: "npr. Osijek",
-    pageTitle: "OSNOVNI PODACI",
+    pageTitle: "Osnovni podaci",
     pageText: "Ostavite osnovne podatke kako bismo vas mogli kontaktirati."
   },
-
   {
     id: "kvadratura",
     type: "options",
@@ -37,21 +36,11 @@ const QUESTIONS = [
     pageTitle: "Veličina prostora",
     pageText: "Odaberite približnu kvadraturu prostora",
     options: [
-      {
-        title: "Mala površina",
-        text: "~30–60 m² (npr. kuhinja, manja garaža, ured)"
-      },
-      {
-        title: "Srednja površina",
-        text: "~65–95 m² (npr. dnevni boravak, radionica)"
-      },
-      {
-        title: "Velika površina",
-        text: "~100+ m² (npr. industrijska hala, skladište)"
-      }
+      { title: "Mala površina", text: "~30–60 m² (npr. kuhinja, manja garaža, ured)" },
+      { title: "Srednja površina", text: "~65–95 m² (npr. dnevni boravak, radionica)" },
+      { title: "Velika površina", text: "~100+ m² (npr. industrijska hala, skladište)" }
     ]
   },
-
   {
     id: "materijal",
     type: "options",
@@ -59,25 +48,12 @@ const QUESTIONS = [
     pageTitle: "Usluge",
     pageText: "Odaberite vrstu završne obrade",
     options: [
-      {
-        title: "Metallic Epoxy",
-        text: "Epoksi s metalik pigmentima koji daje mramorni efekt."
-      },
-      {
-        title: "Jednobojni Epoxy",
-        text: "Jednostavna i čista završna obrada u raznim bojama."
-      },
-      {
-        title: "Flake Epoxy (Chips)",
-        text: "Vinilni čips za protukliznu i dekorativnu površinu."
-      },
-      {
-        title: "Brušenje i zaštita",
-        text: "Za prostore s velikim opterećenjem i prometom."
-      }
+      { title: "Metallic Epoxy", text: "Epoksi s metalik pigmentima koji daje mramorni efekt." },
+      { title: "Jednobojni Epoxy", text: "Jednostavna i čista završna obrada u raznim bojama." },
+      { title: "Flake Epoxy (Chips)", text: "Vinilni čips za protukliznu i dekorativnu površinu." },
+      { title: "Brušenje i zaštita", text: "Za prostore s velikim opterećenjem i prometom." }
     ]
   },
-
   {
     id: "budget",
     type: "text",
@@ -87,9 +63,8 @@ const QUESTIONS = [
     pageTitle: "Budžet",
     pageText:
       "Cijene epoksidnih podova kreću se od cca 40 € / m². Konačna cijena ovisi o stanju podloge, vrsti završne obrade i kvadraturi.",
-      pageNote: "[Minimalna vrijednost projekta: 1 500 €]"
+    pageNote: "[Minimalna vrijednost projekta: 1 500 €]"
   },
-
   {
     id: "email",
     type: "email",
@@ -115,6 +90,7 @@ export default function ContactWizard() {
 
   const [page, setPage] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [loading, setLoading] = useState(false);
 
   /* PAGINACIJA */
   const pages = [];
@@ -153,10 +129,45 @@ export default function ContactWizard() {
     });
   }
 
+  async function handleSubmit() {
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      Object.keys(answers).forEach(key => formData.append(key, answers[key]));
+
+      const response = await fetch("https://formspree.io/f/xlggeokd", { // <--- zamijeni svoj Formspree ID
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (response.ok) {
+        alert("Upit je poslan! Hvala na vašem vremenu.");
+        setAnswers({});
+        setPage(0);
+      } else {
+        alert("Došlo je do pogreške prilikom slanja upita.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Došlo je do pogreške prilikom slanja upita.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function handleNext(e) {
     e.preventDefault();
     if (!canProceed()) return;
-    if (!isLastPage) setPage(p => p + 1);
+
+    if (isLastPage) {
+      handleSubmit();
+    } else {
+      setPage(p => p + 1);
+    }
   }
 
   function handleBack() {
@@ -180,8 +191,8 @@ export default function ContactWizard() {
           <p className="page-text">{visibleQuestions[0].pageText}</p>
         )}
         {visibleQuestions[0]?.pageNote && (
-  <p className="page-note">{visibleQuestions[0].pageNote}</p>
-)}
+          <p className="page-note">{visibleQuestions[0].pageNote}</p>
+        )}
 
         <form className="contact-form" onSubmit={handleNext}>
           {visibleQuestions.map(q => (
@@ -210,6 +221,7 @@ export default function ContactWizard() {
                   placeholder={q.placeholder}
                   value={answers[q.id] || ""}
                   onChange={e => handleChange(q.id, e.target.value)}
+                  required
                 />
               )}
             </div>
@@ -217,12 +229,12 @@ export default function ContactWizard() {
 
           <div className="form-buttons">
             {page > 0 && (
-  <button type="button" onClick={handleBack} className="back-arrow">
-  <FiArrowLeft size={20} /> {/* manja strelica */}
-</button>
-)}
-            <button type="submit">
-              {isLastPage ? "Pošalji upit" : "Dalje"}
+              <button type="button" onClick={handleBack} className="back-arrow">
+                <FiArrowLeft size={24} />
+              </button>
+            )}
+            <button type="submit" disabled={loading}>
+              {loading ? "Slanje..." : isLastPage ? "Pošalji upit" : "Dalje"}
             </button>
           </div>
         </form>
