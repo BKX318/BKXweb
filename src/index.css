@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+
+body {
+  margin: 0;
+  background: #0B0B0F;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+section {
+  max-width: 1250px;
+  margin: auto;
+  padding: 0 0;
+}
+
+h1 {
+  font-size: 5.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+p, li {
+  color: #CCCCCC;
+  line-height: 1.6;
+  font-size: 1.3rem;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white; /* text color on top of GIF */
+}
+
+
+.btn {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  width: fit-content;
+}
+
+.primary {
+  background: #6306e2;
+}
+
+.cta {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px;
+  background: #000;
+  color: #777;
+}
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  color: #777;
+  font-size: 1.5rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #6306e2; /* primjer hover boje */
+  transform: translateY(-3px);
+}
+/* Kartice za WhyUs i Process */
+.card {
+  background-color: #16161D;  /* tamna pozadina */
+  border-radius: 32px;
+  padding: 40px;
+  margin-top: 35px;
+  margin-bottom: 120px;
+  box-shadow: 12px 12px 0 rgba(99, 6, 226, 0.6);
+  max-width: 600px;
+  color: #fff;
+  line-height: 1.6;
+  transition: transform 0.3s ease;
+  
+}
+
+/* Na hover malo podigni karticu */
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Pomak naizmjenično lijevo-desno */
+.card.left {
+  margin-left: 75px;   /* odmak od lijevog ruba */
+  margin-right: auto;
+}
+
+.card.right {
+  margin-left: auto;
+  margin-right: 75px;  /* odmak od desnog ruba */
+}
+
+/* Naslov kartice */
+.card h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Lista i paragraf unutar kartice */
+.card p, .card li {
+  font-size: 1.2rem;
+  color: #CCCCCC;
+}
+
+.card ol {
+  padding-left: 20px;
+}
+
+
+.contact-page {
+  max-width: 600px;
+  margin: auto;
+  padding: 100px 20px;
+}
+
+.contact-form {
+  display: grid;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  background: #16161D;
+  color: #fff;
+}
+
+/* FADE-IN ANIMACIJE */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .card.left, .card.right {
+    margin: 20px auto; /* centriraj na mobilnim uređajima */
+  }
+}

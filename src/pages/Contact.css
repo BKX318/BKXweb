@@ -1,0 +1,251 @@
+.contact-container {
+  display: flex;
+  min-height: 100vh;
+  background: #0B0B0F;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Lijevi dio - 30% širine i blaga ljubičasta */
+.contact-left {
+  position: relative;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+  /* BASE purple (this stays solid) */
+  background: rgba(99, 6, 226, 0.1);;
+
+  overflow: hidden;
+}
+.contact-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/backgroundContact.jpg"); /* ili SVG koji si radio */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.05; /* 👈 kontrola jačine */
+  z-index: 0;
+}
+
+/* sadržaj (logo) iznad backgrounda */
+.contact-left > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+.contact-logo {
+  max-width: 80%;
+  height: auto;
+}
+
+/* Desni dio - forma centrirana horizontalno */
+.contact-right {
+  width: 70%;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertikalno ako container ima min-height */
+  align-items: center;       /* horizontalno centriranje */
+}
+
+.contact-right h2,
+.contact-right p,
+.contact-form {
+  width: 100%;
+  max-width: 500px; /* forma ne ide preko cijelog container-a */
+}
+
+.contact-right h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-right p {
+  margin-bottom: 2rem;
+  color: #CCCCCC;
+}
+
+.contact-form .question {
+  margin-bottom: 1.5rem;
+}
+
+.contact-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: none;
+  background: #16161D;
+  color: #fff;
+}
+
+/* Opcije pitanja - vertikalno */
+.contact-form .options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contact-form .options-container button {
+  width: 100%;
+  padding: 2rem 2rem;
+  border-radius: 14px;
+  border: 2px solid #2a2a3a;
+  background-color: #16161D;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-form .options-container button:hover {
+  border-color: #6306e2;
+  background-color: #1a1a29;
+}
+
+.contact-form .options-container button.selected {
+  border-color: #6306e2;
+  background-color: #6306e2;
+  color: #fff;
+}
+.options-container button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 50%;
+  padding: 2rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  background-color: #16161D;
+  color: #fff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-align: left;
+}
+.contact-form .options-container button strong {
+  display: block;
+  font-size: 1.35rem;   
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+
+.contact-form .options-container button p {
+  font-size: 0.95rem;  
+  line-height: 1.4;
+  color: #cccccc;
+  margin: 0;
+}
+.option-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.option-description {
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-buttons button[type="submit"] {
+  background: #6306e2;
+  color: #fff;
+}
+.question-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+.question-text {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.page-note {
+  font-size: 0.9rem;   /* smanjeni font */
+  color: #CCCCCC;      /* ostaje svijetlo sivo */
+  margin-bottom: 1rem; /* razmak ispod */
+}
+.back-arrow {
+  background: #6306e2;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;      /* bez dodatnog paddinga */
+}
+
+.back-arrow:hover svg {
+  transform: scale(1.2); /* povećava ikonu pri hoveru */
+  transition: transform 0.2s ease;
+}
+
+.contact-form input,
+.form-buttons button,
+.contact-form .options-container button {
+  border-radius: 20px; /* jako zaobljeni kutovi */
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4); /* pomak prema dolje i desno, bez blur */
+  transition: all 0.2s ease;
+}
+
+/* Hover efekt da se shadow malo poveća */
+.contact-form input:hover,
+.form-buttons button:hover,
+.contact-form .options-container button:hover {
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
+}
+.success-message {
+  margin-bottom: 1rem;
+  color: #0f7a45;
+}
+
+.error-message {
+  margin-bottom: 1rem;
+  color: #f00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .contact-left {
+    display: none; /* sakrij lijevi dio */
+  }
+
+  .contact-right {
+    width: 100%;
+    padding: 2rem;
+    align-items: center; /* ostavi formu centriranu */
+  }
+}

@@ -1,0 +1,65 @@
+.home-gallery {
+  width: 100%;
+  padding: 120px 0;
+  background-color: #0b0b0f;
+}
+
+.gallery-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.gallery-image {
+  height: 800px;
+  border-radius: 32px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  box-shadow: 14px 18px 0 rgba(99, 6, 226, 0.9);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.gallery-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+ 
+}
+
+.gallery-image:hover {
+  transform: translateY(-6px);
+  box-shadow: 18px 24px 0 rgba(99, 6, 226, 1);
+}
+
+/* asimetrija za premium feel */
+.gallery-image.left {
+  transform: translateY(20px);
+}
+
+.gallery-image.right {
+  transform: translateY(-20px);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .gallery-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 24px;
+  }
+
+  .gallery-image {
+    height: 380px;
+  }
+
+  .gallery-image.left,
+  .gallery-image.right {
+    transform: none;
+  }
+}

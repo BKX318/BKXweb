@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap');
+
+.navigation {
+  background-color: #bebebe !important;
+  box-shadow: 4px 6px 0 rgba(99, 6, 226, 1) !important;
+
+  position: fixed; /* lebdi iznad Hero */
+  top: 30px;       /* sada nije zalijepljen na vrh */
+  left: 50%;
+  transform: translateX(-50%); /* centrira navigaciju horizontalno */
+  max-width: 1200px;  /* ne preširoko */
+  width: calc(100% - 80px); /* malo margin sa strane za male ekrane */
+  
+  z-index: 1000;
+  border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.nav-container {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: #6306e2;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #6306e2;
+}
+
+.nav-link.active {
+  color: #6306e2;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #6306e2;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+}
+
+/* BESPLATNA PROCJENA – CTA LINK */
+.free-estimate {
+  color: #0f7a45;        /* tamnozelena */
+  font-weight: 700;      /* bold */
+}
+
+
+
+/* ako je aktivna stranica */
+.free-estimate.active {
+  color: #0f7a45;
+}
+
+/* underline u zelenoj boji kad je aktivna */
+.free-estimate.active::after {
+  background-color: #0f7a45;
+}
